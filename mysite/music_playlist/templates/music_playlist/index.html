@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <form action
+    {% if song_list %}
+    <ul>
+      {% for song in song_list %}
+      <li>
+	<h1>{{ song.artist_name }} -- {{ song.song_name }}</h1>
+	<h3>From : {{ song_url }}</h3>
+	<audio src="{{ song.media_url }}" controls > No mp3 support </audio>
+      </li>
+      {% endfor %}
+    </ul>
+    {% else %}
+    <p>No songs are available, Need to add</p>
+    {% endif %}
+  </body>
+</html>
