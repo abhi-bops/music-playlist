@@ -1,15 +1,36 @@
 <html>
+  <head>
+    <style type="text/css">
+      .songlet {
+      width : 700px;
+      height : 150px;
+      border : 2px solid black;
+      margin : 0px auto;
+      background : lightblue;
+      }
+      .song_title {
+      }
+      .add_song_box_c {
+      margin : 0px auto;
+      width : 500px;
+      height : 30px;
+      }
+      li {
+      list-style : none;
+      }
+    </style>
+  </head>
   <body>
     <form action="/music_playlist/add_song/" method="post">
       {% csrf_token %}
-      <input type="text" name="add_song" id="add_song_box" />
+      <input type="text" name="add_song" id="add_song_box" class="add_song_box_c"/>
     </form>
     {% if song_list %}
     <ul>
       {% for song in song_list %}
-      <li>
-	<h1>{{ song.artist_name }} -- {{ song.song_name }}</h1>
-	<h3>From : {{ song_url }}</h3>
+      <li class="songlet">
+	<div class="song_title">{{ song.artist_name }} -- {{ song.song_name }}</div>
+	<div class="song_from">From : {{ song.song_url }}</div>
 	<audio src="{{ song.media_url }}" controls > No mp3 support </audio>
       </li>
       {% endfor %}

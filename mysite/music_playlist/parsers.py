@@ -2,11 +2,13 @@
 All the websites parsers should fall as a part of a class Parser
 """
 
-class MusicParser(song_url):
-    self.song_name = None
-    self.artist_name = None
-    self.media_url = None
-    self.song_url = song_url
+class MusicParser:
+    song_name = None
+    artist_name = None
+    media_url = None
+    
+    def __init__(self, song_url):
+        self.song_url = song_url
     
     def parse_webpage(self, song_url):
         pass
