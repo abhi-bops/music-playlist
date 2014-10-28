@@ -1,6 +1,9 @@
 <html>
   <body>
-    <form action
+    <form action="/music_playlist/add_song/" method="post">
+      {% csrf_token %}
+      <input type="text" name="add_song" id="add_song_box" />
+    </form>
     {% if song_list %}
     <ul>
       {% for song in song_list %}
