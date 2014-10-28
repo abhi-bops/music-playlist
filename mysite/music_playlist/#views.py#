@@ -17,14 +17,5 @@ def add_song(request):
     S.save()
     return HttpResponseRedirect(reverse('music_playlist:index'))
 
-def guess_song_artist(link):
-    """
-    A rough estimation of what a song's artist / could be, got by splitting
-    the string from the url.
-    """
-    song_name = link.split('/')[-1] #the object name
-    artist = song_name.split('-')[0]
-    song_name = song_name.split('-')[1].split('.')[0]
-    return artist, song_name
 
 
