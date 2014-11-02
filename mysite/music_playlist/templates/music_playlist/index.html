@@ -32,6 +32,16 @@
 	<div class="song_title">{{ song.artist_name }} -- {{ song.song_name }}</div>
 	<div class="song_from">From : {{ song.song_url }}</div>
 	<audio src="{{ song.media_url }}" controls > No mp3 support </audio>
+	<div class="voting">
+	  <span>Votes = {{ song.show_song_votes }}</span>
+	  <form action="/music_playlist/up_vote/{{ song.id }}/" method="post">
+	    {% csrf_token %}
+	    <button name="up_vote" value="+">+</button><span>{{ song.up_vote }}</span>
+	  </form>
+	  <form action="/music_playlist/down_vote/{{ song.id }}/" method="post">
+	    {% csrf_token %}
+	    <button name="up_vote" value="+">-</button><span>{{ song.down_vote }}</span>
+	  </form>
       </li>
       {% endfor %}
     </ul>

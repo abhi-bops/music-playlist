@@ -13,18 +13,29 @@ def index(request):
 def add_song(request):
     song = request.POST['add_song']
     # TODO : Parse data before adding it to database
-    S = Song(media_url=song, song_url=song)
-    S.save()
+    media = song
+    if Song.objects.filter(media_url=media):
+        pass
+    else:
+        S = Song(media_url=song, song_url=song)
+        S.save()
     return HttpResponseRedirect(reverse('music_playlist:index'))
 
-def guess_song_artist(link):
-    """
-    A rough estimation of what a song's artist / could be, got by splitting
-    the string from the url.
-    """
-    song_name = link.split('/')[-1] #the object name
-    artist = song_name.split('-')[0]
-    song_name = song_name.split('-')[1].split('.')[0]
-    return artist, song_name
+def up_vote(request, song_id):
+    song = Song.objects.get(pk=song_id)
+    song.up_vote += 1
+    song.save()
+    return HttpResponseRedirect(reverse('music_playlist:index'))
+    
+def down_vote(request, song_id):
+    song = Song.objects.get(pk=song_id)
+    song.down_vote += 1
+    song.save()
+    return HttpResponseRedirect(reverse('music_playlist:index'))
+
+def played(request):
+    pass
+
+
 
 

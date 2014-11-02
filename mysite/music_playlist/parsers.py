@@ -6,10 +6,12 @@ class MusicParser:
     song_name = None
     artist_name = None
     media_url = None
+    hoster = None
     
-    def __init__(self, song_url):
+    def __init__(self, song_url, host):
         self.song_url = song_url
-    
+        self.host = host
+
     def parse_webpage(self, song_url):
         pass
 
@@ -29,4 +31,3 @@ class MusicParser:
         """
         pass
 
-    
