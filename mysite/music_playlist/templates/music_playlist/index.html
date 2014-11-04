@@ -1,52 +1,50 @@
+{% load staticfiles %}
+
 <html>
   <head>
-    <style type="text/css">
-      .songlet {
-      width : 700px;
-      height : 150px;
-      border : 2px solid black;
-      margin : 0px auto;
-      background : lightblue;
-      }
-      .song_title {
-      }
-      .add_song_box_c {
-      margin : 0px auto;
-      width : 500px;
-      height : 30px;
-      }
-      li {
-      list-style : none;
-      }
-    </style>
+    <link href="{% static 'music_playlist/style.css' %}" type="text/css" rel="stylesheet" />
   </head>
   <body>
-    <form action="/music_playlist/add_song/" method="post">
-      {% csrf_token %}
-      <input type="text" name="add_song" id="add_song_box" class="add_song_box_c"/>
-    </form>
-    {% if song_list %}
-    <ul>
-      {% for song in song_list %}
-      <li class="songlet">
-	<div class="song_title">{{ song.artist_name }} -- {{ song.song_name }}</div>
-	<div class="song_from">From : {{ song.song_url }}</div>
-	<audio src="{{ song.media_url }}" controls > No mp3 support </audio>
-	<div class="voting">
-	  <span>Votes = {{ song.show_song_votes }}</span>
-	  <form action="/music_playlist/up_vote/{{ song.id }}/" method="post">
+
+    <div id="music-playlist">
+      <div id="music-search">
+	<form action="/music_playlist/add_song/" method="post">
+	  {% csrf_token %}
+	  <input type="text" name="add_song" id="add_song_box" class="add_song_box_c"/>
+	</form>
+      </div>
+      {% if song_list %}
+      <ul>
+	{% for song in song_list %}
+	<li class="songlet">
+	  <div class="album-cover">
+	    album cover
+	  </div>
+	  
+	  <div class="song-details">
+	    <div class="song-name">{{ song.song_name }}</div>
+	    <div class="artist-name">{{ song.artist_name }}</div>
+	    <div class="song-from">From : {{ song.song_url }}</div>
+	  </div>
+	  
+	  <div class="voting">
+	    <span>Votes = {{ song.show_song_votes }}</span>
+	    <form action="/music_playlist/up_vote/{{ song.id }}/" method="post">
 	    {% csrf_token %}
 	    <button name="up_vote" value="+">+</button><span>{{ song.up_vote }}</span>
-	  </form>
-	  <form action="/music_playlist/down_vote/{{ song.id }}/" method="post">
-	    {% csrf_token %}
-	    <button name="up_vote" value="+">-</button><span>{{ song.down_vote }}</span>
-	  </form>
-      </li>
+	    </form>
+	    <form action="/music_playlist/down_vote/{{ song.id }}/" method="post">
+	      {% csrf_token %}
+	      <button name="up_vote" value="+">-</button><span>{{ song.down_vote }}</span>
+	    </form>
+	    <audio class="song" src="{{ song.media_url }}" controls > No mp3 support </audio>
+	</li>
       {% endfor %}
     </ul>
     {% else %}
     <p>No songs are available, Need to add</p>
     {% endif %}
+
+    </div>
   </body>
 </html>

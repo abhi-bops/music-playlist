@@ -3,14 +3,12 @@ All the websites parsers should fall as a part of a class Parser
 """
 
 class MusicParser:
-    song_name = None
-    artist_name = None
-    media_url = None
-    hoster = None
+    host = None
+    song_url = None
     
-    def __init__(self, song_url, host):
-        self.song_url = song_url
+    def __init__(self, host, song_url=""):
         self.host = host
+        self.song_url = song_url
 
     def parse_webpage(self, song_url):
         pass
@@ -30,4 +28,8 @@ class MusicParser:
         Get info by running through the metadata of the media file.
         """
         pass
+
+mp3skull_parser = MusicParser(host = "mp3skull.com")
+#mp3skull_parser.parse_webpage(song_url)
+#mp3skull_parser.get_details()
 

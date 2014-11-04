@@ -9,7 +9,7 @@ class Song(models.Model):
     times_played = models.IntegerField(default=0)
     up_vote = models.IntegerField(default=0)
     down_vote = models.IntegerField(default=0)
-    submit_user = models.CharField(default='anon')
+    submit_user = models.CharField(default='anon', max_length=20)
 
     def __str__(self):
         # If we have a song name or an artist name, let's return that
