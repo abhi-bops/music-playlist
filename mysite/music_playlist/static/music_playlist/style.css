@@ -22,24 +22,37 @@
    margin-top : 5px;
  }
 
+
+.voting {
+    height : 100px;
+    width : 50px;
+    float: left;
+    border: 1px dashed #333;
+    color : #333399;
+}
+
+button {
+    display : block;
+    font-size : 1em;
+    font-weight: bold;
+    background-color : #666;
+    color : #efefef;
+}
+
 .album-cover {
     width : 100px;
     height : 100px;
     float: left;
     border : 1px solid #333;
+    margin-left : 2px
 }
 
 .song-details {
-    margin : 5px 5px 5px 105px;
     background-color : #cf0;
+    float: left;
+    margin-left : 2px;
 }
 
-.vote {
-    height : 100px;
-    width : 50px;
-    float: right;
-    border: 1px dashed #333;
-    }
 
 /* Styling */
 .songlet {
