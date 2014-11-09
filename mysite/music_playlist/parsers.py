@@ -30,6 +30,4 @@ class MusicParser:
         pass
 
 mp3skull_parser = MusicParser(host = "mp3skull.com")
-#mp3skull_parser.parse_webpage(song_url)
-#mp3skull_parser.get_details()
 

@@ -19,15 +19,21 @@
 	<li class="songlet">
 	  
 	  <div class="voting">
+	    <div class="voting-up">
 	    <form action="/music_playlist/up_vote/{{ song.id }}/" method="post">
 	    {% csrf_token %}
 	    <button name="up_vote" value="+">+</button>
 	    </form>
+	    </div>
+	    <div class="voting-count">
 	    <span>{{ song.show_song_votes }}</span>
+	    </div>
+	    <div class="voting-down">
 	    <form action="/music_playlist/down_vote/{{ song.id }}/" method="post">
 	      {% csrf_token %}
 	      <button name="up_vote" value="+">-</button>
 	    </form>
+	    </div>
 	  </div>
 	  <div class="album-cover">
 	    album cover
@@ -38,8 +44,9 @@
 	    <div class="artist-name">Artist : {{ song.artist_name }}</div>
 	    <div class="song-from">From : {{ song.song_url }}</div>
 	  </div>
-
+	  <div class="audio-player">
 	    <audio class="song" src="{{ song.media_url }}" controls > No mp3 support </audio>
+	  </div>
 	</li>
       {% endfor %}
     </ul>
